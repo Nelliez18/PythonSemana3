@@ -113,4 +113,136 @@ def adicionar_item_seguro(lista_original, novo_item):
 #print(nova_compras) # Retorna: ['arroz', 'feijão', 'azeite']
 
 ```
+Desafios bônus
+Módulo estatistica.py: media, mediana e moda, com alias est
+```python
+"""Módulo para cálculos estatísticos básicos."""
 
+from collections import Counter
+
+def calcular_media(valores):
+    """Calcula a média aritmética de uma lista de números.
+    
+    Argumentos:
+        valores (list): Lista com números (int ou float).
+    Retorna:
+        float: O valor da média.
+    """
+    if not valores:
+        return 0
+    return sum(valores) / len(valores)
+
+def calcular_mediana(valores):
+    """Calcula a mediana de uma lista de números.
+    
+    Argumentos:
+        valores (list): Lista com números (int ou float).
+    Retorna:
+        float: O valor da mediana.
+    """
+    if not valores:
+        return 0
+    ordenados = sorted(valores)
+    n = len(ordenados)
+    meio = n // 2
+    
+    if n % 2 == 1:
+        return ordenados[meio]
+    return (ordenados[meio - 1] + ordenados[meio]) / 2
+
+def calcular_moda(valores):
+    """Calcula a(s) moda(s) de uma lista de números.
+    
+    Argumentos:
+        valores (list): Lista com números.
+    Retorna:
+        list: Lista com o(s) valor(es) mais frequente(s).
+    """
+    if not valores:
+        return []
+    contador = Counter(valores)
+    maior_frequencia = max(contador.values())
+    return [item for item, freq in contador.items() if freq == maior_frequencia]
+```
+```python
+import estatistica as est
+
+dados = [1, 2, 2, 3, 4, 7, 9]
+
+print(f"Média: {est.calcular_media(dados)}")       # 4.0
+print(f"Mediana: {est.calcular_mediana(dados)}")   # 3
+print(f"Moda: {est.calcular_moda(dados)}")         # [2]
+```
+Função recursiva fatorial(n): compare com Portugol com repetição
+```python
+def fatorial_recursivo(n):
+    """Calcula o fatorial de um número inteiro de forma recursiva.
+    
+    Argumentos:
+        n (int): Número inteiro não-negativo.
+    Retorna:
+        int: O resultado do fatorial.
+    """
+    if n <= 1:
+        return 1
+    return n * fatorial_recursivo(n - 1)
+
+# COMPARATIVO: PORTUGOL COM REPETIÇÃO (Iterativo)
+# 
+# programa {
+#     funcao inicio() {
+#         inteiro n, fatorial = 1, i
+#         escreva("Digite um número: ")
+#         leia(n)
+#         
+#         // Abordagem com repetição (enquanto ou para)
+#         para(i = n; i > 1; i--) {
+#             fatorial = fatorial * i
+#         }
+#         
+#         escreva("O fatorial é: ", fatorial)
+#     }
+# }
+
+# Teste da função Python
+print(f"Fatorial de 5 (Recursivo): {fatorial_recursivo(5)}")  # 120
+
+```
+Função relatorio(titulo, *linhas, **config) que formata texto
+```python
+def relatorio(titulo, *linhas, **config):
+    """Gera um relatório textual formatado dinamicamente.
+    
+    Argumentos:
+        titulo (str): O título principal do relatório.
+        *linhas (str): Múltiplas strings representando as linhas de conteúdo.
+        **config (opcionais):
+            caractere_borda (str): Caractere para desenhar as divisórias (padrão '*').
+            maiusculo (bool): Transforma o título em caixa alta se True (padrão False).
+    """
+    # Define valores padrão usando os kwargs passados ou defaults seguros
+    borda = config.get("caractere_borda", "*")
+    caixa_alta = config.get("maiusculo", False)
+    
+    texto_titulo = titulo.upper() if caixa_alta else titulo
+    largura = max(len(texto_titulo), max((len(l) for l in linhas), default=0)) + 4
+    
+    # Montagem do layout do relatório
+    print(borda * largura)
+    print(f"{borda} {texto_titulo.center(largura - 4)} {borda}")
+    print(borda * largura)
+    
+    for linha in linhas:
+        print(f"{borda} {linha.ljust(largura - 4)} {borda}")
+        
+    print(borda * largura)
+
+# Teste da função
+relatorio(
+    "Vendas Mensais", 
+    "Produto A: R$ 500", 
+    "Produto B: R$ 1.200", 
+    caractere_borda="-", 
+    maiusculo=True
+)
+```
