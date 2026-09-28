@@ -51,6 +51,7 @@ def orc(qtd, preco, frete=0):
 print(orc(3, 49.9, 15))  # 164.7
 ```
 Prática Independente
+
 Conversor: crie celsius_para_fahrenheit(c) e devolva o valor com return.
 ```python
 def celsius_para_fahrenheit(c):
@@ -114,6 +115,7 @@ def adicionar_item_seguro(lista_original, novo_item):
 
 ```
 Desafios bônus
+
 Módulo estatistica.py: media, mediana e moda, com alias est
 ```python
 """Módulo para cálculos estatísticos básicos."""
