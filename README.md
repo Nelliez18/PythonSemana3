@@ -53,7 +53,6 @@ print(orc(3, 49.9, 15))  # 164.7
 Prática Independente
 Conversor: crie celsius_para_fahrenheit(c) e devolva o valor com return.
 ```python
-# 1. Conversor
 def celsius_para_fahrenheit(c):
     return (c * 9/5) + 32
 ```
