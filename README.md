@@ -28,7 +28,7 @@ print(total(10, 25.5, 7, desc=10))
 # 38.25
 ```
 Exercício guiado 4: Objeto mutável
-```
+```python
 def reg(nota, boletim=None):
     """Nao altera a lista original."""
     if boletim is None:
